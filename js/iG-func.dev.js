@@ -3,7 +3,7 @@ $(function(){
     document.addEventListener("deviceready",function(){
         //var listener = self.setInterval(function(){listarMesas()},1500);
         listarCarta();
-        navigator.nnotification.alert('hola',null,'tit','btn');
+        navigator.notification.alert('hola',null,'tit','btn');
         //Ir a pendientes
         $('#btnPendientes').click(function(){
             $('#pedidos').hide();
