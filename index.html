@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Aplicación para meseros</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!--CSS Lybraries-->
+        <link rel="stylesheet" href="css/theme.css">
+        <!--JavaScript Lybraries-->
+        <script src="js/zepto.min.js" type="text/javascript"></script>
+        <!--<script src="js/jquery.js" type="text/javascript"></script>-->
+        <script src="js/iG-func.dev.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="page" id="home">
+            <div class="left">
+                <h2>Mi Tierra Oaxaca</h2>
+                <h1>Tlayudas</h1>
+                <ul id="options">
+                    <li rel="openTable">
+                        <select name="openTable">
+                            <option value="">Abrir Mesa</option>
+                        </select>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <ul id="tables">
+                    <!--<li class="alert">Mesa 1</li>
+                    <li>Mesa 2</li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="page" id="orden">
+            <div class="left">
+                <span>Atrás</span>
+            </div>
+            <div class="right">
+                <div class="subPage" id="pedidos">
+                    <div class="head">
+                        <div class="title">Mesa 10</div>
+                        <button id="btnPendientes">Pendientes</button>
+                    </div>
+                    <div class="pedidos"><ul>
+                        <!--<li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>
+                        <li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>
+                        <li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>
+                        <li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>
+                        <li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>
+                        <li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>-->
+                    </ul></div>
+                    <div class="tab">
+                        <button>Cerrar Mesa</button>
+                        <span class="may">Total: <span class="total">$ 0.00</span></span>
+                    </div>
+                    <div class="carta">
+                        <h1>Menú</h1>
+                        <ul class="tipo1"><li>Tlayudas</li>
+                        <!--<li class="option">Tlayuda Especial (sin Carne)</li>
+                        <li class="option">Tlayuda Especial (con Carne)</li>-->
+                    </ul><ul class="tipo2"><li>Bebidas</li></ul></div>
+                </div>
+                <div class="subPage" id="pendientes">
+                    <div class="head">
+                        <div class="title">Mesa</div>
+                        <button id="btnOrden">Orden</button>
+                    </div>
+                    <div class="body">
+                        <ul>
+                            <!--<li class="pending">hola</li>
+                            <li class="ready">Listo</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="extras">
+            <ul>
+                <li><label><input type="checkbox" value="1" /> Extra 1</label></li>
+                <li><label><input type="checkbox" value="2" /> Extra 2</label></li>
+                <li><label><input type="checkbox" value="3" /> Extra 3</label></li>
+            </ul>
+            <button class="submit">Pedir</button>
+        </div>
+    </body>
+</html>
