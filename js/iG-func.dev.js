@@ -1,3 +1,4 @@
+var serverFile = 'http://192.168.1.76/carlos/APPS/mitierraoaxaca/Web/fnc/ajaxfnc.php';
 $(function(){
     var listener = self.setInterval(function(){listarMesas()},1500);
     listarCarta();
@@ -52,7 +53,7 @@ $(function(){
 function subirEntrega(id,des,pr,prod){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'subirEntrega',id: id },
         timeout: 300,
         context: $('#extra'),
@@ -71,7 +72,7 @@ function subirEntrega(id,des,pr,prod){
 function crearrPedido(pr,or,obj){
      $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'crearPedido',id: pr,or: or },
         timeout: 300,
         success: function(pedido){
@@ -89,7 +90,7 @@ function crearrPedido(pr,or,obj){
 function listarPedidos(oid){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'listarPedidos',id: oid },
         dataType: 'json',
         timeout: 300,
@@ -168,7 +169,7 @@ function agregarExtras(id){
 function nuevoPedido(id){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'nuevoPedido',id: id },
         dataType: 'json',
         timeout: 300,
@@ -187,7 +188,7 @@ function nuevoPedido(id){
 function nuevaOrden(id){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'nuevaOrden',id: id },
         timeout: 300,
         context: $('#extra'),
@@ -205,7 +206,7 @@ function nuevaOrden(id){
 function listarCarta(){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'listarCarta' },
         dataType: 'json',
         timeout: 300,
@@ -225,7 +226,7 @@ function listarCarta(){
 function abrirMesa(table){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'abrirMesa',id: table },
         timeout: 300,
         success: function(hecho){
@@ -243,7 +244,7 @@ function listarMesas(){//mesas disponibles
     //1-Conectar al servidor pidiendo mesas disponibles
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'mesasDisponibles' },
         // tipo de dato que esperamos que regrese
         //2-Recibir objeto json de mesas disponibles
@@ -270,7 +271,7 @@ function listarMesas(){//mesas disponibles
 function tableIsOpen(tid){
     $.ajax({
         type: 'POST',
-        url: '../Web/fnc/ajaxfnc.php',
+        url: serverFile,
         data: { fnc: 'mesaAbierta',id: tid },
         //dataType: 'json',
         timeout: 300,
