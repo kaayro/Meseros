@@ -1,7 +1,8 @@
 var serverFile = 'http://192.168.1.76/carlos/APPS/mitierraoaxaca/Web/fnc/ajaxfnc.php';
 $(function(){
-    var listener = self.setInterval(function(){listarMesas()},1500);
+    //var listener = self.setInterval(function(){listarMesas()},1500);
     listarCarta();
+    navigator.nnotification.alert('hola',null,'tit','btn');
     //Ir a pendientes
     $('#btnPendientes').click(function(){
         $('#pedidos').hide();
