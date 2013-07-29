@@ -1,54 +1,56 @@
 var serverFile = 'http://192.168.1.76/carlos/APPS/mitierraoaxaca/Web/fnc/ajaxfnc.php';
 $(function(){
-    //var listener = self.setInterval(function(){listarMesas()},1500);
-    listarCarta();
-    navigator.nnotification.alert('hola',null,'tit','btn');
-    //Ir a pendientes
-    $('#btnPendientes').click(function(){
-        $('#pedidos').hide();
-        $('#pendientes').show();
-    });
-    //Ir a Orden
-    $('#btnOrden').click(function(){
-        $('#pedidos').show();
-        $('#pendientes').hide();
-    });
-    //listarMesas();
-    $('#options select[name=openTable]').change(function(){
-        var table = $(this).val();
-        if(table!=''){
-            //Verificar que la mesa no esté abierta en el servidor
-            tableIsOpen(table);//Si está disponible
-            $(this).val('');
-        }
-    });
-    //Back
-    $('#orden .left').click(function(){
-        $('#orden').hide();
-        $('#home').show();
-    });
-    //Seleccionar Mesa
-    $('#tables li').live('click',function(){
-        var mid=($(this).attr('id')).substr(5);
-        $('#orden').attr('orden',$(this).attr('orden'));
-        $('#orden .title').text('Mesa '+mid);
-        //Listar datos de la orden
-        $('#home').hide();
-        $('#orden').show();
-        $('#pedidos .pedidos ul').html('');
-        $('#pendientes .body ul').html('');
-        $('#pedidos .tab .may .total').text('$ 0.00');
-        listarPedidos($(this).attr('orden'));
-    });
-    //Entregar Productos pendientes
-    $('#pendientes .ready').live("click",function(){
-        subirEntrega($(this).attr('pedido'),$(this).text(),$(this).attr('precio'),($(this).attr('id')).substr(4));
-        $(this).remove();
-    });
-    //Seleccionar Producto para la mesa
-    $('#orden .carta .option').live('click',function(){
-        crearrPedido($(this).attr('rel'),$('#orden').attr('orden'),$(this));
-    });
+    document.addEventListener("deviceready",function(){
+        //var listener = self.setInterval(function(){listarMesas()},1500);
+        listarCarta();
+        navigator.nnotification.alert('hola',null,'tit','btn');
+        //Ir a pendientes
+        $('#btnPendientes').click(function(){
+            $('#pedidos').hide();
+            $('#pendientes').show();
+        });
+        //Ir a Orden
+        $('#btnOrden').click(function(){
+            $('#pedidos').show();
+            $('#pendientes').hide();
+        });
+        //listarMesas();
+        $('#options select[name=openTable]').change(function(){
+            var table = $(this).val();
+            if(table!=''){
+                //Verificar que la mesa no esté abierta en el servidor
+                tableIsOpen(table);//Si está disponible
+                $(this).val('');
+            }
+        });
+        //Back
+        $('#orden .left').click(function(){
+            $('#orden').hide();
+            $('#home').show();
+        });
+        //Seleccionar Mesa
+        $('#tables li').live('click',function(){
+            var mid=($(this).attr('id')).substr(5);
+            $('#orden').attr('orden',$(this).attr('orden'));
+            $('#orden .title').text('Mesa '+mid);
+            //Listar datos de la orden
+            $('#home').hide();
+            $('#orden').show();
+            $('#pedidos .pedidos ul').html('');
+            $('#pendientes .body ul').html('');
+            $('#pedidos .tab .may .total').text('$ 0.00');
+            listarPedidos($(this).attr('orden'));
+        });
+        //Entregar Productos pendientes
+        $('#pendientes .ready').live("click",function(){
+            subirEntrega($(this).attr('pedido'),$(this).text(),$(this).attr('precio'),($(this).attr('id')).substr(4));
+            $(this).remove();
+        });
+        //Seleccionar Producto para la mesa
+        $('#orden .carta .option').live('click',function(){
+            crearrPedido($(this).attr('rel'),$('#orden').attr('orden'),$(this));
+        });
+    },false);
 });
 /* Órdenes */
 function subirEntrega(id,des,pr,prod){
