@@ -2,14 +2,17 @@
     <head>
         <meta charset="UTF-8" />
         <title>Aplicación para meseros</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
         <!--CSS Lybraries-->
         <link rel="stylesheet" href="css/theme.css">
         <!--JavaScript Lybraries-->
-        <script src="phonegap.js"></script>
-        <script src="js/zepto.min.js" type="text/javascript"></script>
-        <!--<script src="js/jquery.js" type="text/javascript"></script>-->
-        <script src="js/iG-func.dev.js" type="text/javascript"></script>
+        <script src="cordova.js"></script>
+        <!--<script src="js/zepto.min.js" type="text/javascript"></script>-->
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/hammer.js" type="text/javascript"></script></script>
+        <script src="js/main.js" type="text/javascript"></script>
+        <script src="js/ajax-conn.js" type="text/javascript"></script>
+        <script src="js/events.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="page" id="home">
@@ -50,7 +53,7 @@
                         <li><span class="cant">10</span>Tlayuda<span class="precio">$ 10.00</span></li>-->
                     </ul></div>
                     <div class="tab">
-                        <button>Cerrar Mesa</button>
+                        <button id="btnClose">Cerrar Mesa</button>
                         <span class="may">Total: <span class="total">$ 0.00</span></span>
                     </div>
                     <div class="carta">
@@ -81,6 +84,14 @@
                 <li><label><input type="checkbox" value="3" /> Extra 3</label></li>
             </ul>
             <button class="submit">Pedir</button>
+        </div>
+        <div id="meseros">
+            <ul>
+                <li>Elegir Meseros</li>
+                <li class="opt" rel="1">Carlos</li>
+                <li class="opt" rel="2">Manuel</li>
+                <li class="opt" rel="3">Raúl</li>
+            </ul>
         </div>
     </body>
 </html>

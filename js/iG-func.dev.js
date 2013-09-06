@@ -1,9 +1,9 @@
 var serverFile = 'http://192.168.1.76/carlos/APPS/mitierraoaxaca/Web/fnc/ajaxfnc.php';
 $(function(){
     document.addEventListener("deviceready",function(){
-        //var listener = self.setInterval(function(){listarMesas()},1500);
+        var listener = self.setInterval(function(){listarMesas()},1500);
         listarCarta();
-        navigator.notification.alert(serverFile,null,'tit','btn');
+        //navigator.notification.alert(serverFile,null,'tit','btn');
         //Ir a pendientes
         $('#btnPendientes').click(function(){
             $('#pedidos').hide();
@@ -210,6 +210,21 @@ function listarCarta(){
     $.ajax({
         type: 'POST',
         url: serverFile,
+        data: 'fnc=listarCarta',
+        dataType: 'json',
+        context: $('#orden .carta'),
+        error: function(xhr, type){
+            alert('Ajax error!');
+        }
+    }).done(function(carta){
+        for(i=0;i<carta.length;i++){
+            var ul = this.children('ul.tipo'+carta[i].tipoId);
+            ul.append('<li class="option" rel="'+carta[i].prodId+'"><span class="des">'+carta[i].producto+'</span><span class="precio">'+carta[i].precio+'</span></li>');
+        }
+    });
+    /*$.ajax({
+        type: 'POST',
+        url: serverFile,
         data: { fnc: 'listarCarta' },
         dataType: 'json',
         timeout: 300,
@@ -223,11 +238,24 @@ function listarCarta(){
         error: function(xhr, type){
             alert('Ajax error!');
         }
-    });
+    });*/
 }
 /* Mesas */
 function abrirMesa(table){
     $.ajax({
+        type: 'POST',
+        url: serverFile,
+        data: 'fnc=abrirMesa&id='+table,
+        error: function(xhr, type){
+            alert('Ajax error!');
+        }
+    }).done(function(hecho){
+        if(hecho == 1)
+            nuevaOrden(table);
+        else
+            navigator.notification.alert('cerrar mesa',null,'tit','btn');//cerrarMesa(table);
+    });
+    /*$.ajax({
         type: 'POST',
         url: serverFile,
         data: { fnc: 'abrirMesa',id: table },
@@ -241,11 +269,32 @@ function abrirMesa(table){
         error: function(xhr, type){
             alert('Ajax error!');
         }
-    });
+    });*/
 }
 function listarMesas(){//mesas disponibles
     //1-Conectar al servidor pidiendo mesas disponibles
+    //alert('entra');
     $.ajax({
+        type: 'POST',
+        url: serverFile,
+        data: 'fnc=mesasDisponibles',
+        //dataType: 'json',
+        context: $('#options select[name=openTable]'),
+        error: function(xhr, type){
+            alert('Ajax error!');
+        }
+    }).done(function(mesas){
+        var select=this;
+        navigator.notification.alert(select,null,'tit','btn');
+        /*select.children('option').each(function(){
+            if($(this).attr('value')!='')
+                $(this).remove();
+        });*/
+        for(i=0;i<mesas.length;i++){
+            select.append('<option value="'+mesas[i].mesaId+'">Mesa '+mesas[i].mesaId+'</option>');
+        }
+    });
+    /*$.ajax({
         type: 'POST',
         url: serverFile,
         data: { fnc: 'mesasDisponibles' },
@@ -268,11 +317,27 @@ function listarMesas(){//mesas disponibles
         error: function(xhr, type){
             alert('Ajax error!');
         }
-    });
+    });*/
 }
 
 function tableIsOpen(tid){
     $.ajax({
+        type: 'POST',
+        url: serverFile,
+        data: 'fnc=mesaAbierta&id='+tid,
+        context: $('#tables'),
+        error: function(xhr, type){
+            alert('Ajax error!');
+        }
+    }).done(function(abierta){
+        if(abierta=='1'){//Está abierta
+            alert("Mesa no disponible");
+        }else{
+            $('#tables').append('<li class="table" id="table'+tid+'">Mesa '+tid+'</li>');
+            abrirMesa(tid);
+        }
+    });
+    /*$.ajax({
         type: 'POST',
         url: serverFile,
         data: { fnc: 'mesaAbierta',id: tid },
@@ -292,5 +357,5 @@ function tableIsOpen(tid){
         error: function(xhr, type){
             alert('Ajax error!');
         }
-    });
+    });*/
 }
